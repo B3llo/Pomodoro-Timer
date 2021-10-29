@@ -1,0 +1,89 @@
+* {
+  outline: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: rgb(235, 240, 245);
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(25, 25, 25);
+  font-size: 18px;
+  font-weight: 220;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 85vh;
+  width: 40vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(50, 50, 50);
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.7rem;
+  width: 100%;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(50, 50, 50);
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.7rem;
+  width: 100%;
+}
+
+h2 {
+  margin-bottom: 1em;
+}
+
+input {
+  font-family: "Open Sans", sans-serif;
+  margin: 0.4em;
+  border: none;
+  border-radius: 2px;
+  padding-left: 5px;
+  height: 27px;
+  width: 60%;
+}
+
+#btn {
+  width: 20%;
+  height: 30px;
+  margin: 20px auto;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: rgb(53, 165, 31);
+}
+
+.radio {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-cont {
+  width: fit-content;
+}
