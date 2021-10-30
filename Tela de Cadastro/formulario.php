@@ -198,25 +198,50 @@ if(isset($_POST['submit'])) {
   $sobrenome = $mysqli->real_escape_string($_POST["sobrenome"]);
   $email = $mysqli->real_escape_string($_POST['email']);
   $usuario = $mysqli->real_escape_string($_POST["usuario"]);
-  $senha = $mysqli->real_escape_string($_POST["senha"]);
+  $senha = password_hash($mysqli->real_escape_string($_POST["senha"]), PASSWORD_DEFAULT);
   $interesse = $mysqli->real_escape_string($_POST['interesse']);
   $senioridade = $mysqli->real_escape_string($_POST['senioridade']);
   $devweb = $mysqli->real_escape_string($_POST['devweb']);
-  $tech = $mysqli->real_escape_string($_POST['tech']);
+  $tech = serialize(array($mysqli->real_escape_string($_POST['tech'])));
   $experiencia = $mysqli->real_escape_string($_POST['experiencia']);
 
-  $sql = "INSERT INTO usuarios(nome, sobrenome, email, usuario, senha, interesse_ti, experience) VALUES('$nome', '$sobrenome', '$email', '$usuario', '$senha', '$interesse', '$experiencia')";
+  var_dump($senha);
 
-  $results = mysqli_query($mysqli, $sql);
-  var_dump($results);
+  $availabilityUser= "SELECT nome FROM usuarios WHERE usuario = '$usuario';";
+  $availabilityEmail = "SELECT email FROM usuarios WHERE email = '$email';";
 
-  if(!$results) {
-    echo "Error while inserting in DataBase !!! 💀 💀 💀 . $mysqli->error";
-    die("⛔ ⛔ ⛔ ");
-  } else {
-    echo("<script>alert('Usuário registrado com sucesso!!! 🚀') </script>");
-    
+  $sql_query_user = $mysqli->query($availabilityUser) or die("Error while executing query for user" . $mysqli->error);
+  $sql_query_email = $mysqli->query($availabilityEmail) or die("Error while executing query for email" . $mysqli->error);
+
+  $numRows_user = $sql_query_user->num_rows;
+  $numRows_email = $sql_query_email->num_rows;
+
+
+  if($numRows_user == 0 && $numRows_email == 0) {
+    $sql = "INSERT INTO usuarios(nome, sobrenome, email, usuario, senha, interesse_ti, experience) VALUES('$nome', '$sobrenome', '$email', '$usuario', '$senha', '$interesse', '$experiencia');";
+  
+    $results = mysqli_query($mysqli, $sql);
+    var_dump($results);
+  
+    if(!$results) {
+      echo "Error while inserting in DataBase !!! 💀 💀 💀 . $mysqli->error";
+      die("⛔ ⛔ ⛔ ");
+    } else {
+      echo("<script>alert('Usuário registrado com sucesso!!! 🚀') </script>");
+    }
   }
+  else {
+    if($numRows_user == 0) {
+      echo("<script>alert('Este email já se encontra em uso!') </script>");
+    } else {
+      if($numRows_email == 0) {
+        echo("<script>alert('Este nome de usuário já se encontra em uso!') </script>");
+      } else {
+        echo("<script>alert('Este email e usuário já se encontram em uso!') </script>");
+      }
+    }
+  }
+
 } else {
   echo "<script>alert('Verifique suas informações')</script>";
   echo "Verifique suas informações" . $mysqli->error;
