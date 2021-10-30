@@ -1,0 +1,122 @@
+/* Todos os elementos da página */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Elemento de tag <body> */
+body {
+  background-color: #f0f8ff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #02234e;
+}
+
+#titulo {
+  margin-top: 1em;
+  width: fit-content;
+}
+
+#subtitulo {
+  text-align: center;
+}
+
+fieldset {
+  border: 0;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 16px;
+  color: #02234e;
+  border-radius: 7px;
+}
+
+.campo label {
+  margin-bottom: 0.2em;
+  color: #02234e;
+  display: block;
+}
+
+fieldset .grupo .campo {
+  float: left;
+  margin-right: 1em;
+}
+
+.campo {
+  margin-bottom: 1em;
+  padding: 0.2em;
+  display: block;
+}
+
+.botao {
+  font-size: 1.2em;
+  background: #32527c;
+  border: 0;
+  margin-bottom: 1em;
+  color: #ffffff;
+  padding: 0.2em 0.6em;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.botao:hover {
+  box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
+}
+
+.botao {
+  cursor: pointer;
+  margin: 1em auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  text-align: center;
+  width: 42vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.check {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.senioridade {
+  display: flex;
+  justify-content: center;
+  height: 22px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+input {
+  padding-left: 4px;
+  border: none;
+  height: 27px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.techs input,
+.radio input {
+  box-shadow: none;
+  height: fit-content;
+}
