@@ -11,13 +11,12 @@ if(isset($_POST['usuario']) || isset($_POST['senha'])) {
     $user = $mysqli->real_escape_string($_POST['usuario']);
     $password = $mysqli->real_escape_string($_POST['senha']);
 
-    $check = "SELECT * FROM usuarios WHERE usuario = '$user' AND senha = '$password'";
+    $check = "SELECT * FROM usuarios WHERE usuario = '$user'";
     $sql_query = $mysqli->query($check) or die("Error while executing query" . $mysqli->error);
 
-    # Checking if number possible results equals 1
-    $qtd = $sql_query->num_rows;
+    $usuario = $sql_query->fetch_assoc();
 
-    if($qtd == 1) {
+    if(password_verify($password, $usuario['senha'])) {
       $usuario = $sql_query->fetch_assoc();
       echo("Logged in Successfully");
 

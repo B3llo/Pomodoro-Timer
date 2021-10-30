@@ -12,6 +12,7 @@
       href="formulario.css"
       media="screen"
     />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -228,6 +229,9 @@ if(isset($_POST['submit'])) {
       die("⛔ ⛔ ⛔ ");
     } else {
       echo("<script>alert('Usuário registrado com sucesso!!! 🚀') </script>");
+      echo("<script>    
+              window.location = '../home.php';
+            </script>");
     }
   }
   else {
