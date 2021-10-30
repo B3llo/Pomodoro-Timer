@@ -1,8 +1,6 @@
 <?php 
 
-    if(!isset($_SESSION)) {
-        session_start();
-    }
+    include('private.php');
 
 ?>
 
@@ -15,5 +13,7 @@
 </head>
 <body>
     <h2>Login efetuado com sucesso</h2> <?php echo $_SESSION['nome']; ?></h2>
+    <br><br><br><br><br>
+    <a href="logout.php"><h2>Sair</h2></a>
 </body>
 </html>

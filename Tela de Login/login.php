@@ -12,12 +12,11 @@ if(isset($_POST['usuario']) || isset($_POST['senha'])) {
     $password = $mysqli->real_escape_string($_POST['senha']);
 
     $check = "SELECT * FROM usuarios WHERE usuario = '$user'";
-    $sql_query = $mysqli->query($check) or die("Error while executing query" . $mysqli->error);
+    $sql_query = $mysqli->query($check) or die("Error while checking DataBase !!!" . $mysqli->error);
 
     $usuario = $sql_query->fetch_assoc();
 
     if(password_verify($password, $usuario['senha'])) {
-      $usuario = $sql_query->fetch_assoc();
       echo("Logged in Successfully");
 
       if(!isset($_SESSION)) {
@@ -25,11 +24,13 @@ if(isset($_POST['usuario']) || isset($_POST['senha'])) {
       }
 
       $_SESSION['id'] = $usuario['id'];
-      $_SESSION['nome'] = $usuario['none'];
+      $_SESSION['nome'] = $usuario['nome'];
 
       header('Location: ../home.php');
-    } 
-  }
+    } else  {
+        echo("<script>alert('Usuário ou Senha Incorreto(s)!') </script>");
+    }
+  } 
 }
 
 ?>
