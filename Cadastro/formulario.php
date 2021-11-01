@@ -14,8 +14,6 @@ if(isset($_POST['submit'])) {
   $tech = serialize(array($mysqli->real_escape_string($_POST['tech'])));
   $experiencia = $mysqli->real_escape_string($_POST['experiencia']);
 
-  var_dump($senha);
-
   $availabilityUser= "SELECT nome FROM usuarios WHERE usuario = '$usuario';";
   $availabilityEmail = "SELECT email FROM usuarios WHERE email = '$email';";
 
@@ -30,7 +28,6 @@ if(isset($_POST['submit'])) {
     $sql = "INSERT INTO usuarios(nome, sobrenome, email, usuario, senha, interesse_ti, experience) VALUES('$nome', '$sobrenome', '$email', '$usuario', '$senha', '$interesse', '$experiencia');";
   
     $results = mysqli_query($mysqli, $sql);
-    var_dump($results);
   
     if(!$results) {
       echo "Error while inserting in DataBase !!! 💀 💀 💀 . $mysqli->error";
@@ -48,6 +45,7 @@ if(isset($_POST['submit'])) {
       }
 
       $_SESSION['id'] = $usuario['id'];
+      $_SESSION['usuario'] = $usuario['usuario'];
       $_SESSION['nome'] = $usuario['nome'];
 
       echo("<script>    
@@ -67,10 +65,6 @@ if(isset($_POST['submit'])) {
     }
   }
 
-} else if($_POST['nome'] != null){
-  echo "<script>alert('Verifique suas informações')</script>";
-  echo "Verifique suas informações" . $mysqli->error;
-  die("");
 }
 ?>
 

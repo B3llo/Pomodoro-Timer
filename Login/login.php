@@ -25,6 +25,7 @@ if(isset($_POST['usuario']) || isset($_POST['senha'])) {
 
       $_SESSION['id'] = $usuario['id'];
       $_SESSION['nome'] = $usuario['nome'];
+      $_SESSION['usuario'] = $usuario['usuario'];
 
       header('Location: ../home.php');
     } else  {
@@ -71,12 +72,12 @@ if(isset($_POST['usuario']) || isset($_POST['senha'])) {
                 <label for Senha><strong>Senha</strong></label>
                 <input type="password" name="senha" id="senha" required />
               </div>
-              <input class="botao login-btn" type="submit" value="Avançar" />
+              <input class="botao login-btn" type="submit" value="Entrar" />
           </form>
         </div>
         <div class="redirect2register">
           Não possui uma conta ? 
-         <a href="../Tela de Cadastro/formulario.php"><input class="botao" id="redirect-btn" type="submit" value="Registrar" /></a>
+         <a href="../Cadastro/formulario.php"><input class="botao" id="redirect-btn" type="submit" value="Registrar" /></a>
         </div>
       </div>
     </div>
