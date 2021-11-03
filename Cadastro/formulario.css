@@ -109,7 +109,7 @@ form {
 }
 
 input {
-  padding-left: 4px;
+  padding-left: 6px;
   border: none;
   height: 27px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
@@ -119,4 +119,9 @@ input {
 .radio input {
   box-shadow: none;
   height: fit-content;
+}
+
+#experiencia {
+  padding-left: 6px;
+  padding-top: 6px;
 }

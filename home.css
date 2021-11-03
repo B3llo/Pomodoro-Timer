@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background: #f8f8f8;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.usr {
+  font-size: 2rem;
+  margin-left: 30px;
+}
+
+.logout {
+  display: flex;
+  position: absolute;
+  font-size: 1.2rem;
+  bottom: 5px;
+  margin: 0;
+  left: 50%;
+  justify-content: center;
+  background: rgb(165, 67, 67);
+  padding: 5px 20px;
+  border-radius: 11px;
+}
+
+.logout a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.progress {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px auto;
+  align-items: center;
+}
+
+.progress_bar {
+  width: 60vw;
+  height: 4px;
+  background: rgb(185, 185, 185);
+  margin: 0 1.5rem;
+  border-radius: 7px;
+}
+
+.extremes {
+  font-size: 1rem;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60vw;
+  height: 65vh;
+}
+
+.left {
+  display: grid;
+  grid-template-rows: 2fr 1fr 2fr 1fr;
+  width: 100%;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 3px solid rgb(0, 0, 0);
+  background: #3e0077;
+}
+
+.completedChallenges {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  margin: 30px 0;
+  border-bottom: 2px solid rgb(32, 1, 145);
+}
+
+#timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8rem;
+  font-family: "Rajdhani", sans-serif;
+  width: 100%;
+  font-weight: 600;
+}
+
+.new_cicle {
+  width: 95%;
+  background: rgb(68, 170, 0);
+  border-radius: 8px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+#next {
+  margin-left: 10px;
+}

@@ -17,6 +17,7 @@ body {
 #titulo {
   color: #02234e;
   margin: 0 auto;
+  font-family: "Poppins", sans-serif;
 }
 
 #check {
@@ -42,6 +43,7 @@ fieldset {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .grupo {
@@ -80,6 +82,7 @@ fieldset {
   cursor: pointer;
   transition: 400ms;
   border-radius: 7px;
+  font-family: "Poppins", sans-serif;
 }
 
 .botao:hover {
@@ -122,8 +125,8 @@ fieldset {
 }
 
 #redirect-btn {
+  font-family: "Poppins", sans-serif;
   margin: 0.6em;
-  font-family: sans-serif;
 }
 
 form {
