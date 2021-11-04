@@ -1,19 +1,13 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    if (empty($_GET["hrs"])) {
-        $hrs = 1;
-    }
-    else {
-        $hrs = $_GET["hrs"];
-    }
     if (empty($_GET["mins"])) {
-        $mins = 1;
+        $mins = 25;
     }
     else {
         $mins = $_GET["mins"];
     }
     if (empty($_GET["secs"])) {
-        $secs = 1;
+        $secs = 0;
     }
     else {
         $secs = $_GET["secs"];
@@ -28,48 +22,42 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			.clock{
             left:5%;
             margin:5px;
-            max-width:300px;
 			}
 		</style>
 	</head>
 	<body>
 		<script type="text/javascript">
-			function countDown(hrs,mins,secs) {
+			function countDown(mins,secs) {
 				
 				var secelem = document.getElementById("sec");
     			secelem.innerHTML = (secs<10 ? "0":"") +  secs + " secs";
 				var minelem = document.getElementById("min");
 				minelem.innerHTML = (mins<10 ? "0":"") +  mins + " mins";
-				var hrelem = document.getElementById("hr");
-				hrelem.innerHTML = (hrs<10 ? "0":"") + hrs + " hrs";
+				
 				if(secs < 1) {
-					if(mins < 1 && hrs <1) {
+					if(mins < 1) {
 						clearTimeout(timer);
+                        die("Time is over!");
 					}
-					else if (mins <1)
+					else if (mins < 1)
 					{
-						hrs --;
-                        mins = 60;
+                        mins = 0;
 					}
                     secs = 60;
                     mins--;
 					
 				}
 				secs--;
-				var timer = setTimeout(function(){countDown(hrs,mins,secs);},1000);
+				var timer = setTimeout(function(){countDown(mins,secs);},1000);
 			}
 		</script>
 		<div  class="btn-group btn-group-justified clock" role="group" aria-label="Justified button group">
-		  <div id="hr" class="btn btn-default" role="button"><? echo $hrs; ?> hrs</div>
 		  <div id="min" class="btn btn-default" role="button"><? echo $mins; ?> mins</div>
 		  <div id="sec" class="btn btn-success" role="button"><? echo $secs; ?> secs</div>
 		</div>
-		<script type="text/javascript">countDown(<? echo $hrs; ?>,<? echo $mins; ?>,<? echo $secs; ?>);</script>
+		<script type="text/javascript">countDown(<? echo $mins; ?>,<? echo $secs; ?>);</script>
         <form class="form-inline" role="form" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <div class="form-group">
-                <label for="hrs">Hours</label>
-                <input value = "<? echo $hrs; ?>" name="hrs" type="number" class="form-control" id="hrs" placeholder="Hours">
-            </div>
+
             <div class="form-group">
                 <label for="mins">Minutes</label>
                 <input value = "<? echo $mins; ?>" name="mins"  type="number" class="form-control" id="mins" placeholder="Minutes">

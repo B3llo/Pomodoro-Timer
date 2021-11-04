@@ -3,9 +3,8 @@
 include('private.php');
     
 $src = "https://avatars.dicebear.com/api/gridy/" . $_SESSION['usuario'] . ".svg";
-
-$seconds = 0;
-$minutes = 0;
+$mins = 0;
+$secs = 5;
 
 ?>
 
@@ -22,6 +21,52 @@ $minutes = 0;
     <title>Home</title>
 </head>
 <body>
+
+        <script type="text/javascript">
+
+            let start = 0;
+
+			function countDown(mins,secs) {
+				
+				var secelem = document.getElementById("sec");
+    			secelem.innerHTML = (secs < 10 ? "0":"") +  secs;
+				var minelem = document.getElementById("min");
+				minelem.innerHTML = (mins < 10 ? "0":"") +  mins + ": ";
+				
+				
+                if(secs < 1) {
+                    console.log(mins, secs);
+					if(mins < 1) {
+                        alert("O tempo acabou, hora de dar um descanso de 5 minutinhos!")
+                        mins = 25;
+                        secs = 0;
+                        start = 0;
+					    clearTimeout(timer);
+                        <?php if($mins < 1 && $secs < 1) { $mins = 25; $secs = 0;} ?>
+				    }
+			    	else if (mins < 1)
+					{
+                        mins = 0;
+					}
+                        secs = 60;
+                        mins--;
+				}
+
+				secs--;
+
+                if(start == 1) {
+				    setTimeout(function(){countDown(mins,secs);},1000);
+                }
+                
+			}
+
+            function startTimer() {
+                start = 1;
+                countDown(<? echo $mins; ?>,<? echo $secs; ?>);
+            }
+
+		</script>
+
     <div class="container">
 
         <div class="progress">
@@ -50,10 +95,14 @@ $minutes = 0;
                 </div>
 
                 <div id="timer">
-                    <span id="min">25</span>:<span id="sec">00</span>
+                    <div id="min"><? echo $mins; ?> </div>
+		             <div id="sec"><? echo $secs; ?> </div>
                 </div>
+
+                <script type="text/javascript">countDown(<? echo $mins; ?>,<? echo $secs; ?>);</script>
+
                 <div class="new_cicle"  >
-                    Iniciar Novo Ciclo     
+                    <span onClick="startTimer();">Iniciar Novo Ciclo</span>    
                     <img src="next.png" width="30px" id="next"> 
                 </div>
                 
