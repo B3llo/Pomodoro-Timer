@@ -5,6 +5,9 @@ include('private.php');
 $src = "https://avatars.dicebear.com/api/gridy/" . $_SESSION['usuario'] . ".svg";
 $mins = 0;
 $secs = 5;
+$mode = 25;
+$start = 0;
+$challengesCompleted = 0;
 
 ?>
 
@@ -17,14 +20,18 @@ $secs = 5;
     <link rel="stylesheet" href="home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Home</title>
 </head>
+
 <body>
 
         <script type="text/javascript">
 
             let start = 0;
+
+            let roubar_dados_usuario = true;
 
 			function countDown(mins,secs) {
 				
@@ -33,17 +40,20 @@ $secs = 5;
 				var minelem = document.getElementById("min");
 				minelem.innerHTML = (mins < 10 ? "0":"") +  mins + ": ";
 				
-				
                 if(secs < 1) {
-                    console.log(mins, secs);
+
 					if(mins < 1) {
                         alert("O tempo acabou, hora de dar um descanso de 5 minutinhos!")
-                        mins = 25;
-                        secs = 0;
                         start = 0;
-					    clearTimeout(timer);
-                        <?php if($mins < 1 && $secs < 1) { $mins = 25; $secs = 0;} ?>
+                        if($mode == 25) {
+                            mins = 5;
+                            secs = 0;
+					        clearTimeout(timer);
+                            <?php  $start = 0; $mode = 5; if($mins < 1 && $secs < 1) { $mins = 5; $secs = 0;} ?>
+                            countDown(<? echo $mins; ?>,<? echo $secs; ?>);
+                        }
 				    }
+
 			    	else if (mins < 1)
 					{
                         mins = 0;
@@ -55,14 +65,16 @@ $secs = 5;
 				secs--;
 
                 if(start == 1) {
-				    setTimeout(function(){countDown(mins,secs);},1000);
+                    var timer = setTimeout(function(){countDown(mins,secs);},1000);
                 }
-                
 			}
 
             function startTimer() {
                 start = 1;
+                $start = 1;
                 countDown(<? echo $mins; ?>,<? echo $secs; ?>);
+                document.querySelector(".new_cicle").setAttribute("id", "clicked");
+                document.querySelector(".new_cicle").innerHTML = "Keep It Going!";
             }
 
 		</script>
@@ -87,10 +99,9 @@ $secs = 5;
 
                 <div class="completedChallenges">
                     <div>
-                        Desafio Completos 
+                        <span>Desafio Completos </span>
+                        <?php  echo($challengesCompleted) ?>
                     </div> 
-               
-
 
                 </div>
 
@@ -101,12 +112,11 @@ $secs = 5;
 
                 <script type="text/javascript">countDown(<? echo $mins; ?>,<? echo $secs; ?>);</script>
 
-                <div class="new_cicle"  >
-                    <span onClick="startTimer();">Iniciar Novo Ciclo</span>    
+                <div class="new_cicle" onClick="startTimer();">
+                    <span>Iniciar Novo Ciclo</span>    
                     <img src="next.png" width="30px" id="next"> 
                 </div>
                 
-
             </div>
 
             <div class="right">
